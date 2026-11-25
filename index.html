@@ -168,6 +168,55 @@
     background:var(--ink);color:var(--card);font-size:13px;font-weight:650;
   }
   .spec-note{margin-top:8px;color:var(--muted)}
+  .cmp-wrap{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px}
+  .cmp{
+    flex:1 1 240px;min-width:0;
+    border:1px dashed var(--line);border-radius:11px;
+    background:var(--inset);padding:12px 13px;
+  }
+  .cmp-tag{
+    font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:9px;
+  }
+  .cmp-tag.ok{color:var(--muted)}
+  .cmp-tag.bad{color:var(--accent)}
+  .win{display:flex;align-items:center;gap:9px;min-width:0}
+  .dots{display:flex;gap:4px;flex:0 0 auto}
+  .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+  .bar{
+    display:flex;align-items:center;gap:7px;min-width:0;flex:1 1 auto;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:7px;padding:7px 9px;
+  }
+  .bar svg{
+    width:12px;height:12px;flex:0 0 auto;fill:none;stroke:var(--muted);
+    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
+  }
+  .url{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:12.5px;color:var(--ink);word-break:break-all;min-width:0;
+  }
+  .cmp-note{margin-top:11px;color:var(--muted);font-size:14.5px}
+  /* wireframe, not a replica: identical on both sides, on purpose */
+  .pg{
+    margin-top:10px;background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:14px 13px 15px;
+  }
+  .pg-mark{width:19px;height:19px;border-radius:5px;background:var(--line);margin-bottom:11px}
+  .pg-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:11px}
+  .pg-field{height:9px;border-radius:3px;background:var(--line);margin-bottom:8px}
+  .pg-field.b{width:62%}
+  .pg-btn{height:23px;width:66px;border-radius:6px;background:var(--muted);margin:13px 0 0 auto}
+  .how{
+    display:flex;gap:8px;align-items:flex-start;margin-top:12px;
+    font-size:13.5px;line-height:1.4;
+  }
+  .how svg{
+    width:15px;height:15px;flex:0 0 auto;margin-top:2px;fill:none;
+    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
+  }
+  .how.ok{color:var(--muted)} .how.ok svg{stroke:var(--muted)}
+  .how.bad{color:var(--accent);font-weight:600} .how.bad svg{stroke:var(--accent)}
   .do{
     margin:0;background:var(--inset);
     border-radius:13px;padding:16px 18px;
@@ -284,12 +333,40 @@
     <h2>Never sign in from a link in an email</h2>
     <p class="why">A link can look perfect and still land on a perfect copy of a login page. Typing your password there hands over your account. This is the most common attack there is.</p>
     <div class="eg"><b>Looks like this</b>
-      <div class="spec">
-        <div class="spec-label">Shared with you</div>
-        <div>A document has been shared with you.</div>
-        <span class="spec-btn">Open document</span>
-        <div class="spec-note">The link opens a sign-in page that looks exactly right.</div>
+      <div class="cmp-wrap">
+        <div class="cmp">
+          <div class="cmp-tag ok">The real one</div>
+          <div class="win">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="bar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8.5 10.5V7.4a3.5 3.5 0 0 1 7 0v3.1"/></svg><span class="url">login.microsoftonline.com</span></span>
+          </div>
+          <div class="pg" aria-hidden="true">
+              <div class="pg-mark"></div>
+              <div class="pg-title">Sign in</div>
+              <div class="pg-field"></div>
+              <div class="pg-field b"></div>
+              <div class="pg-btn"></div>
+            </div>
+          <p class="how ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>You opened the site yourself, from a bookmark.</span></p>
+        </div>
+        <div class="cmp">
+          <div class="cmp-tag bad">The fake</div>
+          <div class="win">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="bar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8.5 10.5V7.4a3.5 3.5 0 0 1 7 0v3.1"/></svg><span class="url">login-microsoft<span class="flag">0</span>nline.com</span></span>
+          </div>
+          <div class="pg" aria-hidden="true">
+              <div class="pg-mark"></div>
+              <div class="pg-title">Sign in</div>
+              <div class="pg-field"></div>
+              <div class="pg-field b"></div>
+              <div class="pg-btn"></div>
+            </div>
+          <p class="how bad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>You clicked a link in an email.</span></p>
+        </div>
       </div>
+      <p class="cmp-note">The two pages are drawn identically here on purpose: a good fake is a perfect copy, and both show a padlock. A padlock only means the connection is private, never that the site is genuine. The address is the one clue, and it can come down to a single character. What really separates these two is how you arrived.</p>
+    </div>
     </div>
     <p class="do"><b>What to do</b>If a link asks for your password, stop. Open the site yourself instead: from a bookmark, or by typing the address. If it's a shared document you weren't expecting, check with the sender first by phone or a new email, never by replying to that one.</p>
   </section>
