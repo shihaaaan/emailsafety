@@ -44,7 +44,7 @@
     background:var(--bg);
     color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:17px;
+    font-size:16px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
@@ -81,7 +81,7 @@
     font-size:clamp(34px,7.4vw,48px);line-height:1.05;letter-spacing:-.03em;
     font-weight:720;margin:0 0 18px;
   }
-  .lede{font-size:19.5px;color:var(--muted);margin:0 0 36px;max-width:54ch}
+  .lede{font-size:18px;color:var(--muted);margin:0 0 36px;max-width:54ch}
 
   /* ---------- callouts ---------- */
   .pattern{
@@ -96,7 +96,7 @@
     fill:none;stroke:currentColor;stroke-width:1.75;
     stroke-linecap:round;stroke-linejoin:round;
   }
-  .pattern strong{display:block;font-size:19.5px;margin-bottom:5px;letter-spacing:-.015em}
+  .pattern strong{display:block;font-size:18px;margin-bottom:5px;letter-spacing:-.015em}
 
   /* ---------- habit cards ---------- */
   .rule{
@@ -123,10 +123,46 @@
     font-variant-numeric:tabular-nums;
   }
   .rule h2{
-    font-size:clamp(21px,4.5vw,25px);line-height:1.22;letter-spacing:-.024em;
+    font-size:clamp(20px,4.3vw,23px);line-height:1.24;letter-spacing:-.024em;
     font-weight:690;margin:0 0 13px;
   }
-  .why{color:var(--muted);margin:0 0 18px}
+  .why{color:var(--muted);margin:0 0 17px}
+  .eg{
+    margin:0 0 17px;padding:1px 0 1px 16px;
+    border-left:3px solid var(--accent-line);
+    color:var(--muted);font-size:15.5px;
+  }
+  .eg b{
+    display:block;font-size:11.5px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink);opacity:.7;margin-bottom:4px;
+  }
+  /* illustrative mockups: dashed edge signals "example", not a real screenshot */
+  .spec{
+    border:1px dashed var(--line);border-radius:11px;
+    background:var(--inset);padding:13px 15px;margin-top:9px;
+    font-size:14.5px;line-height:1.45;color:var(--ink);
+  }
+  .spec-row{display:flex;gap:11px;align-items:center}
+  .av{
+    flex:0 0 auto;width:32px;height:32px;border-radius:50%;
+    background:var(--accent);color:#fff;display:grid;place-items:center;
+    font-size:13px;font-weight:700;
+  }
+  .spec-from{font-weight:650}
+  .mono{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:13.5px;color:var(--muted);word-break:break-all;
+  }
+  .flag{text-decoration:underline wavy var(--accent);text-underline-offset:3px}
+  .spec-label{
+    font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:5px;
+  }
+  .spec-btn{
+    display:inline-block;margin-top:10px;padding:6px 14px;border-radius:7px;
+    background:var(--ink);color:var(--card);font-size:13px;font-weight:650;
+  }
+  .spec-note{margin-top:8px;color:var(--muted)}
   .do{
     margin:0;background:var(--inset);
     border-radius:13px;padding:16px 18px;
@@ -168,12 +204,12 @@
   .reassure{
     margin:21px 0 0;padding-top:19px;
     border-top:1px solid rgba(255,255,255,.2);
-    font-size:18.5px;font-weight:600;color:#fff;
+    font-size:17.5px;font-weight:600;color:#fff;
   }
 
   footer{
     margin:42px 0 0;padding-top:21px;border-top:1px solid var(--line);
-    font-size:15px;color:var(--muted);
+    font-size:14.5px;color:var(--muted);
   }
 
   /* ---------- print: makes a wall poster ---------- */
@@ -225,6 +261,17 @@
     </div>
     <h2>Check the address, not the name</h2>
     <p class="why">Anyone can put any name they like on an email. The address is the part they can't fake.</p>
+    <div class="eg"><b>Looks like this</b>
+      <div class="spec">
+        <div class="spec-row">
+          <span class="av" aria-hidden="true">E</span>
+          <div>
+            <div class="spec-from">Ebbett Service Team</div>
+            <div class="mono">ebbett.accounts47<span class="flag">@gmail.com</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <p class="do"><b>What to do</b>Tap or click the sender's name to see the real address. A real company will not email you from gmail.com, outlook.com or hotmail.com.</p>
   </section>
 
@@ -237,6 +284,14 @@
     </div>
     <h2>Never sign in from a link in an email</h2>
     <p class="why">A link can look perfect and still land on a perfect copy of a login page. Typing your password there hands over your account. This is the most common attack there is.</p>
+    <div class="eg"><b>Looks like this</b>
+      <div class="spec">
+        <div class="spec-label">Shared with you</div>
+        <div>A document has been shared with you.</div>
+        <span class="spec-btn">Open document</span>
+        <div class="spec-note">The link opens a sign-in page that looks exactly right.</div>
+      </div>
+    </div>
     <p class="do"><b>What to do</b>If a link asks for your password, stop. Open the site yourself instead: from a bookmark, or by typing the address. If it's a shared document you weren't expecting, check with the sender first by phone or a new email, never by replying to that one.</p>
   </section>
 
@@ -249,6 +304,13 @@
     </div>
     <h2>Never install or run anything an email asks you to</h2>
     <p class="why">Opening a document is normal. Being asked to install, update, enable or run something is how a computer gets infected.</p>
+    <div class="eg"><b>Looks like this</b>
+      <div class="spec">
+        <div class="spec-label">Invoice.pdf</div>
+        <div>This document cannot be displayed. Install the viewer to continue.</div>
+        <span class="spec-btn">Install viewer</span>
+      </div>
+    </div>
     <p class="do"><b>What to do</b>If a link downloads a file that then wants to run, or a page asks you to install a viewer or update your browser: stop and report it.</p>
   </section>
 
@@ -261,6 +323,13 @@
     </div>
     <h2>Never paste or type what a web page tells you to</h2>
     <p class="why">Some pages pretend to be a "prove you're human" check, then ask you to copy something or press a key combination.</p>
+    <div class="eg"><b>Looks like this</b>
+      <div class="spec">
+        <div class="spec-label">Verification failed</div>
+        <div>To confirm you are human, complete these steps:</div>
+        <div class="spec-note">1. Press the keys shown below<br>2. Paste the text and press Enter</div>
+      </div>
+    </div>
     <p class="do"><b>What to do</b>A real check never asks you to paste text or run commands. Close the page and report it.</p>
   </section>
 
@@ -273,6 +342,12 @@
     </div>
     <h2>Confirm any payment change by phone</h2>
     <p class="why">Talking someone into changing bank details is the most profitable thing an attacker can do, and the email will look like it came from someone you deal with every day.</p>
+    <div class="eg"><b>Looks like this</b>
+      <div class="spec">
+        <div class="spec-label">Subject: Updated bank details</div>
+        <div>Please note our account has changed. Kindly use the new details below for invoice 48821, now overdue.</div>
+      </div>
+    </div>
     <p class="do"><b>What to do</b>Ring to confirm, using a number you already have. Never a number from the email. Do this even when you know the sender, and especially when it's urgent.</p>
   </section>
 
