@@ -9,23 +9,29 @@
     --bg:#faf8f5;
     --card:#ffffff;
     --ink:#1a1a18;
-    --muted:#5c5a54;
+    --muted:#5e5b55;
     --line:#e7e1d8;
     --accent:#a8530c;
-    --accent-soft:#fdf4e7;
+    --accent-soft:#fdf3e6;
+    --accent-line:#f0dcc0;
     --dark:#1c1b19;
-    --radius:14px;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(28,27,25,.04), 0 2px 6px rgba(28,27,25,.04);
+    --shadow-up:0 2px 4px rgba(28,27,25,.05), 0 8px 18px rgba(28,27,25,.07);
   }
   @media (prefers-color-scheme:dark){
     :root{
       --bg:#141412;
       --card:#1e1d1a;
       --ink:#f4f2ee;
-      --muted:#a8a39a;
+      --muted:#a9a49b;
       --line:#302d28;
       --accent:#e8a05c;
-      --accent-soft:#2a2318;
-      --dark:#0d0d0c;
+      --accent-soft:#2a2217;
+      --accent-line:#3d3123;
+      --dark:#0c0c0b;
+      --shadow:none;
+      --shadow-up:none;
     }
   }
   *{box-sizing:border-box}
@@ -39,173 +45,280 @@
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:680px;margin:0 auto;padding:40px 22px 72px}
+  .wrap{max-width:700px;margin:0 auto;padding:44px 22px 80px}
+
+  /* ---------- icons ---------- */
+  .ico{
+    flex:0 0 auto;width:46px;height:46px;border-radius:13px;
+    background:var(--accent-soft);border:1px solid var(--accent-line);
+    color:var(--accent);
+    display:grid;place-items:center;
+  }
+  .ico svg{
+    width:23px;height:23px;display:block;
+    fill:none;stroke:currentColor;stroke-width:1.75;
+    stroke-linecap:round;stroke-linejoin:round;
+  }
+  .ico.sm{width:38px;height:38px;border-radius:11px}
+  .ico.sm svg{width:20px;height:20px}
 
   /* ---------- header ---------- */
+  .mark{
+    width:52px;height:52px;border-radius:15px;
+    background:var(--accent);color:var(--bg);
+    display:grid;place-items:center;margin:0 0 22px;
+  }
+  .mark svg{
+    width:27px;height:27px;fill:none;stroke:currentColor;
+    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
+  }
   .eyebrow{
-    font-size:13px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent);margin:0 0 14px;
+    font-size:13px;font-weight:650;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 12px;
   }
   h1{
-    font-size:clamp(32px,7vw,46px);line-height:1.08;letter-spacing:-.025em;
+    font-size:clamp(33px,7.2vw,47px);line-height:1.06;letter-spacing:-.028em;
     font-weight:720;margin:0 0 18px;
   }
-  .lede{font-size:19px;color:var(--muted);margin:0 0 30px;max-width:56ch}
+  .lede{font-size:19px;color:var(--muted);margin:0 0 34px;max-width:54ch}
 
+  /* ---------- callout ---------- */
   .pattern{
+    display:flex;gap:16px;align-items:flex-start;
     background:var(--accent-soft);
-    border-left:4px solid var(--accent);
-    border-radius:0 var(--radius) var(--radius) 0;
-    padding:18px 20px;margin:0 0 44px;
-    font-size:17px;
+    border:1px solid var(--accent-line);
+    border-radius:var(--radius);
+    padding:20px;margin:0 0 46px;
   }
-  .pattern strong{display:block;font-size:19px;margin-bottom:4px;letter-spacing:-.01em}
+  .pattern .ico{background:transparent;border:0;width:auto;height:auto}
+  .pattern .ico svg{width:24px;height:24px;margin-top:3px}
+  .pattern strong{display:block;font-size:19px;margin-bottom:5px;letter-spacing:-.012em}
 
-  /* ---------- rules ---------- */
+  /* ---------- habit cards ---------- */
   .rule{
     background:var(--card);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:24px 24px 22px;
-    margin:0 0 16px;
+    box-shadow:var(--shadow);
+    padding:24px;
+    margin:0 0 14px;
+    transition:transform .18s ease, box-shadow .18s ease;
   }
+  @media (hover:hover){
+    .rule:hover{transform:translateY(-2px);box-shadow:var(--shadow-up)}
+  }
+  .rhead{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
   .num{
-    font-size:14px;font-weight:700;color:var(--accent);
-    letter-spacing:.06em;margin:0 0 8px;
+    font-size:12px;font-weight:700;color:var(--accent);
+    letter-spacing:.12em;margin:1px 0 3px;
   }
   .rule h2{
-    font-size:clamp(21px,4.4vw,25px);line-height:1.2;letter-spacing:-.018em;
-    font-weight:690;margin:0 0 12px;
+    font-size:clamp(20px,4.3vw,24px);line-height:1.2;letter-spacing:-.02em;
+    font-weight:690;margin:0;
   }
-  .why{color:var(--muted);margin:0 0 14px}
-  .do{
-    margin:0;padding-top:14px;border-top:1px solid var(--line);
-  }
+  .why{color:var(--muted);margin:0 0 16px}
+  .do{margin:0;padding-top:16px;border-top:1px solid var(--line)}
   .do b{
-    display:block;font-size:12px;font-weight:700;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--accent);margin-bottom:5px;
+    display:block;font-size:12px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:6px;
   }
 
-  /* ---------- report block ---------- */
+  /* ---------- help block ---------- */
   .report{
     background:var(--dark);color:#f6f4f0;
     border-radius:var(--radius);
-    padding:30px 26px;margin:40px 0 0;
+    padding:30px 26px;margin:42px 0 0;
+  }
+  .rephead{display:flex;gap:15px;align-items:center;margin:0 0 18px}
+  .rephead svg{
+    width:29px;height:29px;flex:0 0 auto;fill:none;stroke:#e8a05c;
+    stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
   }
   .report h2{
-    font-size:clamp(23px,5vw,28px);line-height:1.15;letter-spacing:-.02em;
-    font-weight:700;margin:0 0 16px;color:#fff;
+    font-size:clamp(22px,4.8vw,27px);line-height:1.16;letter-spacing:-.022em;
+    font-weight:700;margin:0;color:#fff;
   }
   .report ul{margin:0;padding:0;list-style:none}
   .report li{
-    padding:13px 0;border-top:1px solid rgba(255,255,255,.14);
-    display:flex;gap:13px;align-items:flex-start;
+    padding:13px 0;border-top:1px solid rgba(255,255,255,.13);
+    display:flex;gap:14px;align-items:flex-start;
   }
-  .report li:first-child{border-top:0;padding-top:4px}
-  .tick{color:#e8a05c;font-weight:700;flex:0 0 auto}
-  .addr{
-    font-weight:650;color:var(--accent);text-decoration:none;
-    border-bottom:1.5px solid var(--accent);overflow-wrap:anywhere;
+  .report li:first-child{border-top:0;padding-top:2px}
+  .step{
+    flex:0 0 auto;width:25px;height:25px;border-radius:50%;
+    border:1.5px solid rgba(232,160,92,.55);color:#e8a05c;
+    display:grid;place-items:center;font-size:13px;font-weight:700;
+    margin-top:1px;
   }
-  .report .addr{color:#e8a05c;border-bottom-color:#e8a05c}
   .reassure{
-    margin:18px 0 0;padding-top:17px;
-    border-top:1px solid rgba(255,255,255,.14);
+    margin:20px 0 0;padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.13);
     font-size:18px;font-weight:600;color:#fff;
   }
 
   footer{
-    margin:38px 0 0;padding-top:20px;border-top:1px solid var(--line);
+    margin:40px 0 0;padding-top:20px;border-top:1px solid var(--line);
     font-size:15px;color:var(--muted);
   }
 
   /* ---------- print: makes a wall poster ---------- */
   @media print{
-    :root{--bg:#fff;--card:#fff;--ink:#000;--muted:#333;--line:#bbb;--accent:#8a4209;--accent-soft:#f5f5f5;--dark:#fff}
-    body{font-size:11pt}
+    :root{
+      --bg:#fff;--card:#fff;--ink:#000;--muted:#2e2e2e;--line:#b4b4b4;
+      --accent:#000;--accent-soft:#fff;--accent-line:#777;--dark:#fff;
+      --shadow:none;--shadow-up:none;
+    }
+    body{font-size:10.5pt}
     .wrap{max-width:none;padding:0}
-    .report{color:#000;border:2px solid #000}
+    .mark{background:#fff;color:#000;border:1.5px solid #000}
+    .report{color:#000;border:1.5px solid #000}
     .report h2,.reassure{color:#000}
     .report li{border-top:1px solid #999}
-    .tick{color:#000}
-    .addr,.report .addr{color:#000;border-bottom-color:#000}
+    .rephead svg{stroke:#000}
+    .step{border-color:#000;color:#000}
     .reassure{border-top:1px solid #999}
-    .rule,.report{break-inside:avoid;page-break-inside:avoid}
+    .rule,.report,.pattern{break-inside:avoid;page-break-inside:avoid}
   }
 </style>
 </head>
 <body>
 <main class="wrap">
 
+  <div class="mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M12 21s7-3.2 7-9V5.8L12 3 5 5.8V12c0 5.8 7 9 7 9Z"/><path d="M9.2 11.8l2 2 3.6-3.8"/></svg>
+  </div>
+
   <p class="eyebrow">Email safety</p>
   <h1>Seven habits for work email</h1>
   <p class="lede">Almost everything that threatens us arrives by email. These seven habits are what stop it. Two minutes to read.</p>
 
   <div class="pattern">
-    <strong>Two things they all have in common</strong>
-    Nearly every one of these turns up out of nowhere, and with a reason to hurry. If an email is rushing you, or it has arrived unexpectedly, that is the moment to slow down.
+    <span class="ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.4V12l3.1 2"/></svg>
+    </span>
+    <div>
+      <strong>Two things they all have in common</strong>
+      Nearly every one of these turns up out of nowhere, and with a reason to hurry. If an email is rushing you, or it has arrived unexpectedly, that is the moment to slow down.
+    </div>
   </div>
 
   <section class="rule">
-    <p class="num">01</p>
-    <h2>Check the address, not the name</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.3 16.3 21 21"/></svg>
+      </span>
+      <div>
+        <p class="num">01</p>
+        <h2>Check the address, not the name</h2>
+      </div>
+    </div>
     <p class="why">Anyone can put any name they like on an email. The address is the part they can't fake.</p>
     <p class="do"><b>What to do</b>Tap or click the sender's name to see the real address. A real company will not email you from gmail.com, outlook.com or hotmail.com.</p>
   </section>
 
   <section class="rule">
-    <p class="num">02</p>
-    <h2>Never sign in from a link in an email</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><path d="M12 14.6v2.8"/></svg>
+      </span>
+      <div>
+        <p class="num">02</p>
+        <h2>Never sign in from a link in an email</h2>
+      </div>
+    </div>
     <p class="why">A link can look perfect and still land on a perfect copy of a login page. Typing your password there hands over your account — and this is the most common attack there is.</p>
     <p class="do"><b>What to do</b>If a link asks for your password, stop. Open the site yourself instead — from a bookmark, or by typing the address. If it's a shared document you weren't expecting, check with the sender first by phone or a new email, never by replying to that one.</p>
   </section>
 
   <section class="rule">
-    <p class="num">03</p>
-    <h2>Never install or run anything an email asks you to</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v10.5"/><path d="M8.2 9.8 12 13.6l3.8-3.8"/><path d="M4 16.5v2.2A2.3 2.3 0 0 0 6.3 21h11.4a2.3 2.3 0 0 0 2.3-2.3v-2.2"/></svg>
+      </span>
+      <div>
+        <p class="num">03</p>
+        <h2>Never install or run anything an email asks you to</h2>
+      </div>
+    </div>
     <p class="why">Opening a document is normal. Being asked to install, update, enable or run something is how a computer gets infected.</p>
     <p class="do"><b>What to do</b>If a link downloads a file that then wants to run, or a page asks you to install a viewer or update your browser — stop, and report it.</p>
   </section>
 
   <section class="rule">
-    <p class="num">04</p>
-    <h2>Never paste or type what a web page tells you to</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="7.5" y="3" width="9" height="4.2" rx="1.6"/><path d="M9.3 5.1H6.6A1.6 1.6 0 0 0 5 6.7v12.7A1.6 1.6 0 0 0 6.6 21h10.8a1.6 1.6 0 0 0 1.6-1.6V6.7a1.6 1.6 0 0 0-1.6-1.6h-2.7"/><path d="M8.8 12.6h6.4M8.8 16.2h4.2"/></svg>
+      </span>
+      <div>
+        <p class="num">04</p>
+        <h2>Never paste or type what a web page tells you to</h2>
+      </div>
+    </div>
     <p class="why">Some pages pretend to be a "prove you're human" check, then ask you to copy something or press a key combination.</p>
     <p class="do"><b>What to do</b>A real check never asks you to paste text or run commands. Close the page and report it.</p>
   </section>
 
   <section class="rule">
-    <p class="num">05</p>
-    <h2>Confirm any payment change by phone</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M20.9 16.9v2.4a1.9 1.9 0 0 1-2.1 1.9 18.9 18.9 0 0 1-8.2-2.9 18.6 18.6 0 0 1-5.7-5.7A18.9 18.9 0 0 1 2 4.3 1.9 1.9 0 0 1 3.9 2.2h2.4a1.9 1.9 0 0 1 1.9 1.6c.1 1 .4 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L7.3 9.7a15.3 15.3 0 0 0 5.7 5.7l1.2-1.1a1.9 1.9 0 0 1 2-.4c.9.3 1.7.6 2.7.7a1.9 1.9 0 0 1 1.6 1.9Z"/></svg>
+      </span>
+      <div>
+        <p class="num">05</p>
+        <h2>Confirm any payment change by phone</h2>
+      </div>
+    </div>
     <p class="why">Talking someone into changing bank details is the most profitable thing an attacker can do — and the email will look like it came from someone you deal with every day.</p>
     <p class="do"><b>What to do</b>Ring to confirm, using a number you already have. Never a number from the email. Do this even when you know the sender, and especially when it's urgent.</p>
   </section>
 
   <section class="rule">
-    <p class="num">06</p>
-    <h2>Never approve a login you didn't start</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M18 8.6a6 6 0 0 0-12 0c0 6.4-2.6 7.6-2.6 7.6h17.2S18 15 18 8.6"/><path d="M10.2 19.6a2.1 2.1 0 0 0 3.6 0"/></svg>
+      </span>
+      <div>
+        <p class="num">06</p>
+        <h2>Never approve a login you didn't start</h2>
+      </div>
+    </div>
     <p class="why">If an approval request or a code turns up and you weren't signing in, somebody else already has your password.</p>
     <p class="do"><b>What to do</b>Deny it, then tell IT straight away.</p>
   </section>
 
   <section class="rule">
-    <p class="num">07</p>
-    <h2>Report it — don't just delete it</h2>
+    <div class="rhead">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5.6 21V3.4"/><path d="M5.6 4.4h10.2l-1.8 3.8 1.8 3.8H5.6"/></svg>
+      </span>
+      <div>
+        <p class="num">07</p>
+        <h2>Report it — don't just delete it</h2>
+      </div>
+    </div>
     <p class="why">Reporting quickly is the difference between a twenty-minute fix and a serious problem. Deleting it means nobody can check whether anyone else got the same thing.</p>
     <p class="do"><b>What to do</b>Forward it to the IT team — and report it even if you already clicked. Especially then.</p>
   </section>
 
   <div class="pattern">
-    <strong>Not sure about something? Ask before you click</strong>
-    You never have to work it out on your own. Send it through to the IT team and ask. We would far rather check a safe email for you than clean up after a bad one — and no question is too small or too late.
+    <span class="ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.4a2.4 2.4 0 1 1 3.4 2.3c-.7.3-1.1.9-1.1 1.7"/><path d="M12 16.8h.01"/></svg>
+    </span>
+    <div>
+      <strong>Not sure about something? Ask before you click</strong>
+      You never have to work it out on your own. Send it through to the IT team and ask. We would far rather check a safe email for you than clean up after a bad one — and no question is too small or too late.
+    </div>
   </div>
 
   <div class="report">
-    <h2>Think you've already clicked something?</h2>
+    <div class="rephead">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="M5.6 5.6l3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"/></svg>
+      <h2>Think you've already clicked something?</h2>
+    </div>
     <ul>
-      <li><span class="tick">1.</span><span>Contact the IT team now — call if you can. Minutes matter.</span></li>
-      <li><span class="tick">2.</span><span>Leave the email where it is. We need to see it.</span></li>
-      <li><span class="tick">3.</span><span>Don't try to fix it yourself. Just hand it over.</span></li>
+      <li><span class="step">1</span><span>Contact the IT team now — call if you can. Minutes matter.</span></li>
+      <li><span class="step">2</span><span>Leave the email where it is. We need to see it.</span></li>
+      <li><span class="step">3</span><span>Don't try to fix it yourself. Just hand it over.</span></li>
     </ul>
     <p class="reassure">Nobody gets in trouble for reporting. Telling us early is the single most helpful thing you can do.</p>
   </div>
