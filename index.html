@@ -180,14 +180,9 @@
     padding:32px 28px 30px;margin:58px 0 0;
     box-shadow:var(--shadow-up);
   }
-  .rephead{display:flex;gap:16px;align-items:center;margin:0 0 22px}
-  .rephead svg{
-    width:34px;height:34px;flex:0 0 auto;fill:none;stroke:#fff;
-    stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
-  }
   .report h2{
     font-size:clamp(23px,5.2vw,30px);line-height:1.14;letter-spacing:-.026em;
-    font-weight:720;margin:0;color:#fff;
+    font-weight:720;margin:0 0 22px;color:#fff;
   }
   .report ul{margin:0;padding:0;list-style:none}
   .report li{
@@ -227,7 +222,6 @@
     .report{color:#000;border:1.5px solid #000;border-top-width:5px;box-shadow:none}
     .report h2,.reassure{color:#000}
     .report li{border-top:1px solid #999}
-    .rephead svg{stroke:#000}
     .step{border-color:#000;color:#000}
     .reassure{border-top:1px solid #999}
     .rule,.report,.pattern{break-inside:avoid;page-break-inside:avoid}
@@ -384,10 +378,7 @@
   </div>
 
   <div class="report">
-    <div class="rephead">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="M5.6 5.6l3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"/></svg>
-      <h2>Think you've already clicked something?</h2>
-    </div>
+    <h2>Think you've already clicked something?</h2>
     <ul>
       <li><span class="step">1</span><span>Contact the IT team now, by phone if you can. Minutes matter.</span></li>
       <li><span class="step">2</span><span>Leave the email where it is. We need to see it.</span></li>
